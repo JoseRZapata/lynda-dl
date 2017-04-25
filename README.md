@@ -1,4 +1,4 @@
-#lynda-dl           [Updated Version 25-Apr-2017]
+# lynda-dl           [Updated Version 25-Apr-2017]
 
 This script is an updated version from: https://github.com/papapon/lynda-dl
 
