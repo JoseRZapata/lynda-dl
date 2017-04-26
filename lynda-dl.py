@@ -29,6 +29,9 @@ root = weblink[:weblink.find('/',24)+1]
 websplit = weblink.split('/')
 coursename = websplit[-2]# get only the coursename
 
+#get the specific course code, to avoid download other courses with the same root
+coursecode = websplit[-1][:websplit[-1].find('-')] 
+
 #create course folder
 newpath = os.path.join(current,coursename)
 if not os.path.exists(newpath):
@@ -38,11 +41,11 @@ if not os.path.exists(newpath):
 os.chdir(newpath)
 # get files
 Textfile = open('1-Content','w')
-Textfile.write('{} :\n'.format(coursename))
+#Textfile.write('{} :\n'.format(coursename))
 num = 1
-for link in BeautifulSoup(response).find_all('a', href=True):
+for link in BeautifulSoup(response,'lxml').find_all('a', href=True):
     #print link['href']
-    if root in link['href']: # parse only the links that contain the key URL to your specific tutorial
+    if root in link['href'] and coursecode in link['href']: # parse only the links that contain the key URL to your specific tutorial
         l = link['href']
         nombre = l.replace(root,'')
         #print l
